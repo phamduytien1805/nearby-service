@@ -1,4 +1,4 @@
-package me.nearby.server;
+package me.nearby;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;

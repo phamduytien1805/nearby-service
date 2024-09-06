@@ -1,4 +1,4 @@
-package me.nearby.server.ports.inbound.rest.userlocation.dto;
+package me.nearby.adapter.rest.userlocation.dto;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

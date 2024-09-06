@@ -1,6 +1,6 @@
-package me.nearby.domain.userlocation.usecase;
+package me.nearby.userlocation.usecase;
 
-import me.nearby.domain.userlocation.UserLocation;
+import me.nearby.userlocation.UserLocation;
 
 import java.util.List;
 

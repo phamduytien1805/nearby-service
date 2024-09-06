@@ -1,4 +1,4 @@
-package me.nearby.domain.userlocation.dto;
+package me.nearby.userlocation;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +11,8 @@ import java.io.Serializable;
 @Accessors(chain = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserLocationDTO implements Serializable {
-     String userId;
-     Double latitude;
-     Double longitude;
+public class UserLocation implements Serializable {
+    private String userId;
+    private Double latitude;
+    private Double longitude;
 }

@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group = 'me.nearby.infrastructure'
+group = 'me.nearby'
 version = '0.0.1-SNAPSHOT'
 
 repositories {
