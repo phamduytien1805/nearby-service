@@ -4,4 +4,7 @@ include 'infrastructure'
 include 'domain'
 include 'server'
 include 'shared'
+include 'infrastructure'
+include 'infrastructure'
+include 'infrastructrue'
 
