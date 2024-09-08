@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.3.3'
+    id 'io.spring.dependency-management' version '1.1.6'
 }
 
 group = 'me.nearby'
@@ -14,6 +16,12 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
     implementation 'org.projectlombok:lombok:1.18.22'
+    implementation 'org.springframework:spring-context:6.1.12'
+
+    // https://mvnrepository.com/artifact/com.google.geometry/s2-geometry
+    implementation 'com.google.geometry:s2-geometry:2.0.0'
+
+
 }
 
 test {
