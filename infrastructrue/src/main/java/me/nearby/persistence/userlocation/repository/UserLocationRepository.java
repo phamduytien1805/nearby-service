@@ -2,7 +2,7 @@ package me.nearby.persistence.userlocation.repository;
 
 
 import me.nearby.persistence.userlocation.UserLocationEntity;
-import org.springframework.data.cassandra.repository.CassandraRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserLocationRepository extends CassandraRepository<UserLocationEntity, String> {
+public interface UserLocationRepository extends JpaRepository<UserLocationEntity, String> {
 }
