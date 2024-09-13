@@ -1,4 +1,9 @@
 package me.nearby.service.userlocation;
 
-public class UserLocationService {
+import me.nearby.userlocation.UserLocation;
+
+import java.util.List;
+
+public interface UserLocationService {
+    List<UserLocation> findNearbyUsers(UserLocation userLocation, double radius);
 }
