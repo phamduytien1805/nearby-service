@@ -5,13 +5,13 @@ import me.nearby.adapter.datastorage.userlocation.mapper.UserLocationGatewayMapp
 import me.nearby.persistence.userlocation.UserLocationEntity;
 import me.nearby.persistence.userlocation.repository.UserLocationRepository;
 import me.nearby.spring.shared.repository.AbstractJPARepositoryGateway;
-import me.nearby.spring.shared.repository.AbstractRepositoryGateway;
 import me.nearby.spring.shared.repository.RepositoryConverter;
 import me.nearby.userlocation.UserLocation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.List;
 
 @Component
@@ -36,10 +36,9 @@ public class UserLocationGatewayImpl extends AbstractJPARepositoryGateway<UserLo
     }
 
     @Override
-    public UserLocation saveUserLocation(UserLocation userLocation) {
-        return this.saveAndFlush(userLocation);
+    public List<UserLocation> findByS2CellIdIn(Collection<Long> s2CellIds) {
+        return userLocationRepository.findByS2CellIdIn(s2CellIds).stream().map(userLocationMapper::mapToEntity).toList();
     }
-
 }
 
 
