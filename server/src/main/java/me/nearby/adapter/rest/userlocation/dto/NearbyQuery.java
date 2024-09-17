@@ -7,9 +7,8 @@ import java.io.Serializable;
 
 @Data
 @Accessors(chain = true)
-public class UserLocationDTO implements Serializable {
-     String userId;
-     Double latitude;
-     Double longitude;
-     Double radius;
+public class NearbyQuery implements Serializable {
+    Double latitude;
+    Double longitude;
+    Double radius;
 }

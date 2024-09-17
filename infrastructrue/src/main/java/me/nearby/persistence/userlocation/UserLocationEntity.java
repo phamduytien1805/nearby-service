@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user_location")
+@Table(name = "user_locations")
 @Data
 public class UserLocationEntity implements Serializable {
     @Id
