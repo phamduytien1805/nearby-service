@@ -1,6 +1,6 @@
 package me.nearby.adapter.datastorage.userlocation;
 
-import me.nearby.spring.shared.repository.RepositoryGateway;
+import me.nearby.spring.repository.RepositoryGateway;
 import me.nearby.userlocation.UserLocation;
 
 import java.util.Collection;

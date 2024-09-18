@@ -33,9 +33,14 @@ dependencies {
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.0'
 
     implementation 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
 // https://mvnrepository.com/artifact/org.postgresql/postgresql
     implementation 'org.postgresql:postgresql:42.7.4'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation 'org.slf4j:slf4j-api:2.0.16'
+
 
 
     testImplementation platform('org.junit:junit-bom:5.10.0')

@@ -1,12 +1,14 @@
 package me.nearby.service.userlocation;
 
 import jakarta.annotation.Resource;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import me.nearby.adapter.datastorage.userlocation.UserLocationGateway;
 import me.nearby.adapter.rest.userlocation.dto.NearbyQuery;
 import me.nearby.adapter.rest.userlocation.dto.UserLocationDTO;
 import me.nearby.adapter.rest.userlocation.dto.UserLocationForm;
 import me.nearby.adapter.rest.userlocation.mapper.UserLocationDTOMapper;
+import me.nearby.adapter.rest.userlocation.mapper.UserLocationFormMapper;
 import me.nearby.userlocation.UserLocation;
 import me.nearby.userlocation.usecase.UserLocationUseCase;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserLocationServiceImpl implements UserLocationService {
     @Resource
     private final UserLocationUseCase userLocationUseCase;
@@ -27,6 +29,9 @@ public class UserLocationServiceImpl implements UserLocationService {
     @Resource
     private final UserLocationDTOMapper userLocationDTOMapper = UserLocationDTOMapper.BUILDER;
 
+    @Resource
+    private final UserLocationFormMapper userLocationFormMapper = UserLocationFormMapper.BUILDER;
+
 
     @Override
     public List<UserLocationDTO> findNearbyUsers(NearbyQuery nearbyQuery) {
@@ -36,7 +41,7 @@ public class UserLocationServiceImpl implements UserLocationService {
 
     @Override
     public UserLocationDTO saveUserLocation(UUID userId, UserLocationForm userLocationForm) {
-        UserLocation userLocation = userLocationGateway.save();
+        UserLocation userLocation = userLocationGateway.save(userLocationFormMapper.mapToDomain(userId, userLocationForm));
         return userLocationDTOMapper.mapToDTO(userLocation);
     }
 }

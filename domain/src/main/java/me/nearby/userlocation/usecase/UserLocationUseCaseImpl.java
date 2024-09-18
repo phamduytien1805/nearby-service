@@ -9,7 +9,7 @@ import java.util.List;
 @Component
 @AllArgsConstructor
 public class UserLocationUseCaseImpl implements UserLocationUseCase {
-    private final GeometryUseCase geometryUseCase;
+    private GeometryUseCase geometryUseCase;
     @Override
     public List<Long> getPossibleCellIdsNearbyLocation(Double latitude, Double longitude, double radius) {
         List<Long> coveringCellIds = geometryUseCase.findAllCoveringCellIds(latitude, longitude, radius);

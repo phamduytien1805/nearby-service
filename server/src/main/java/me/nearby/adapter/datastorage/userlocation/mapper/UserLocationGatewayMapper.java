@@ -1,7 +1,7 @@
 package me.nearby.adapter.datastorage.userlocation.mapper;
 
 import me.nearby.persistence.userlocation.UserLocationEntity;
-import me.nearby.spring.shared.repository.RepositoryConverter;
+import me.nearby.spring.repository.RepositoryConverter;
 import me.nearby.userlocation.UserLocation;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

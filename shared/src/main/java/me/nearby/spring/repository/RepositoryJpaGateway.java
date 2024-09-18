@@ -1,4 +1,4 @@
-package me.nearby.spring.shared.repository;
+package me.nearby.spring.repository;
 
 import java.io.Serializable;
 
