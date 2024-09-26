@@ -15,9 +15,9 @@ public class UserLocationEntity implements Serializable {
     @Id
     @UuidGenerator(style = UuidGenerator.Style.TIME)
     @Column(name = "id",insertable = false, updatable = false, nullable = false)
-    private UUID id;
+    UUID id;
 
-    String userId;
+    UUID userId;
     Double latitude;
     Double longitude;
     Long s2CellId;

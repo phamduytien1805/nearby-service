@@ -9,17 +9,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Mapper
-@Component
+@Mapper(componentModel = "spring")
 public interface UserLocationFormMapper {
     UserLocationFormMapper BUILDER = Mappers.getMapper(UserLocationFormMapper.class);
 
     // Map fields from UserLocationForm to UserLocation
-    UserLocation mapToDomain(@Context UUID id, UserLocationForm form);
+    UserLocation mapToDomain(@Context UUID userId, UserLocationForm form);
 
     // After mapping, set the ID
     @AfterMapping
-    default void setId(@MappingTarget UserLocation userLocation, @Context UUID id) {
-        userLocation.setId(id);
+    default void setUserId(@MappingTarget UserLocation userLocation, @Context UUID userId) {
+        userLocation.setUserId(userId);
     }
 }

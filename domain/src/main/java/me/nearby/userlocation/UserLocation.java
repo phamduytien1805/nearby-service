@@ -13,9 +13,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserLocation implements Serializable {
-    private UUID id;
-    private String userId;
-    private Double latitude;
-    private Double longitude;
-    private Long s2CellId;
+    UUID id;
+    UUID userId;
+    Double latitude;
+    Double longitude;
+    Long s2CellId;
 }

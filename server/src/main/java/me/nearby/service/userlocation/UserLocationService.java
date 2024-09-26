@@ -10,5 +10,5 @@ import java.util.UUID;
 
 public interface UserLocationService {
     List<UserLocationDTO> findNearbyUsers(NearbyQuery nearbyQuery);
-    UserLocationDTO saveUserLocation(UUID uuid,UserLocationForm userLocationForm);
+    UserLocationDTO saveUserLocation(UUID userId,UserLocationForm userLocationForm);
 }

@@ -10,6 +10,6 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserLocationForm {
-    private Double latitude;
-    private Double longitude;
+    Double latitude;
+    Double longitude;
 }

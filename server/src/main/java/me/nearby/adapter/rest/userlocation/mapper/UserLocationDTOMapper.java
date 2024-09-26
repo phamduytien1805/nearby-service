@@ -6,8 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
-@Component
-@Mapper
+@Mapper(componentModel = "spring")
 public interface UserLocationDTOMapper {
     UserLocationDTOMapper BUILDER = Mappers.getMapper(UserLocationDTOMapper.class);
 

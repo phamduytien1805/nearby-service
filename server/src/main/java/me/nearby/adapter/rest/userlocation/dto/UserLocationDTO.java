@@ -6,13 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 @Data
 @Accessors(chain = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserLocationDTO implements Serializable {
-     String userId;
+     UUID userId;
      Double latitude;
      Double longitude;
      Double radius;

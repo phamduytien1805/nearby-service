@@ -7,8 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
-@Mapper
-@Component
+@Mapper(componentModel = "spring")
 public interface UserLocationGatewayMapper extends RepositoryConverter<UserLocationEntity, UserLocation> {
     public static final UserLocationGatewayMapper INSTANCE = Mappers.getMapper(UserLocationGatewayMapper.class);
 
