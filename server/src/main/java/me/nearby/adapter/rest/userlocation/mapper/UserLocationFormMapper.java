@@ -2,6 +2,7 @@ package me.nearby.adapter.rest.userlocation.mapper;
 
 import me.nearby.adapter.rest.userlocation.dto.UserLocationDTO;
 import me.nearby.adapter.rest.userlocation.dto.UserLocationForm;
+import me.nearby.spring.converter.RestConverter;
 import me.nearby.userlocation.UserLocation;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;

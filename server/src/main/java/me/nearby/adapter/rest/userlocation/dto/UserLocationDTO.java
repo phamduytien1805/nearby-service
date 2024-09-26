@@ -16,5 +16,4 @@ public class UserLocationDTO implements Serializable {
      UUID userId;
      Double latitude;
      Double longitude;
-     Double radius;
 }

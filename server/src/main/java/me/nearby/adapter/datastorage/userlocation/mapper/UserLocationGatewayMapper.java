@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "spring")
 public interface UserLocationGatewayMapper extends RepositoryConverter<UserLocationEntity, UserLocation> {
-    public static final UserLocationGatewayMapper INSTANCE = Mappers.getMapper(UserLocationGatewayMapper.class);
+    UserLocationGatewayMapper INSTANCE = Mappers.getMapper(UserLocationGatewayMapper.class);
 
     @Override
     UserLocationEntity mapToTableNotNull(UserLocation persistenceObject);
