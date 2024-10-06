@@ -1,11 +1,13 @@
 package me.nearby.adapter.rest.userlocation.mapper;
 
 import me.nearby.adapter.rest.userlocation.dto.UserLocationDTO;
+import me.nearby.domain.geometry.usecase.GeometryUseCaseImpl;
 import me.nearby.spring.converter.RestConverter;
 import me.nearby.userlocation.UserLocation;
+import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
-import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "spring")
 public interface UserLocationDTOMapper extends RestConverter<UserLocationDTO, UserLocation> {
@@ -13,5 +15,4 @@ public interface UserLocationDTOMapper extends RestConverter<UserLocationDTO, Us
 
     UserLocationDTO mapToDTO(UserLocation form);
 
-//    UserLocation mapToEntity(UserLocationDTO dto);
 }

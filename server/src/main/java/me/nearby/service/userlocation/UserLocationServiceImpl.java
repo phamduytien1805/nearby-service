@@ -9,6 +9,7 @@ import me.nearby.adapter.rest.userlocation.dto.UserLocationDTO;
 import me.nearby.adapter.rest.userlocation.dto.UserLocationForm;
 import me.nearby.adapter.rest.userlocation.mapper.UserLocationDTOMapper;
 import me.nearby.adapter.rest.userlocation.mapper.UserLocationFormMapper;
+import me.nearby.domain.geometry.usecase.RadiusConfig;
 import me.nearby.userlocation.UserLocation;
 import me.nearby.userlocation.usecase.UserLocationUseCase;
 import org.springframework.stereotype.Service;
@@ -35,13 +36,14 @@ public class UserLocationServiceImpl implements UserLocationService {
 
     @Override
     public List<UserLocationDTO> findNearbyUsers(NearbyQuery nearbyQuery) {
-        List<Long> coveringCellIds = userLocationUseCase.getPossibleCellIdsNearbyLocation(nearbyQuery.getLatitude(),nearbyQuery.getLongitude() ,nearbyQuery.getRadius());
+        RadiusConfig radiusConfig = RadiusConfig.findByValue(nearbyQuery.getRadius());
+        List<Long> coveringCellIds = userLocationUseCase.getPossibleCellIdsNearbyLocation(nearbyQuery.getLatitude(),nearbyQuery.getLongitude() ,radiusConfig);
         return userLocationGateway.findByS2CellIdIn(coveringCellIds).stream().map(userLocationDTOMapper::mapToDTO).collect(Collectors.toList());
     }
 
     @Override
     public UserLocationDTO saveUserLocation(UUID userId, UserLocationForm userLocationForm) {
-        UserLocation userLocation = userLocationGateway.save(userLocationFormMapper.mapToDomain(userId, userLocationForm));
+        UserLocation userLocation = userLocationGateway.save(userLocationFormMapper.mapToDomain(userId,userLocationForm.getRadius(), userLocationForm));
         return userLocationDTOMapper.mapToDTO(userLocation);
     }
 }

@@ -5,6 +5,7 @@ import me.nearby.adapter.rest.userlocation.dto.NearbyQuery;
 import me.nearby.adapter.rest.userlocation.dto.UserLocationForm;
 
 import me.nearby.adapter.rest.userlocation.dto.UserLocationDTO;
+import me.nearby.domain.geometry.usecase.RadiusConfig;
 import me.nearby.service.userlocation.UserLocationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

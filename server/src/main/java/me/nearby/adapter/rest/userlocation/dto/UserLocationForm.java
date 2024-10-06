@@ -14,4 +14,5 @@ import java.io.Serializable;
 public class UserLocationForm implements Serializable {
     Double latitude;
     Double longitude;
+    Integer radius;
 }

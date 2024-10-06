@@ -14,5 +14,5 @@ import java.io.Serializable;
 public class NearbyQuery implements Serializable {
     Double latitude;
     Double longitude;
-    Double radius;
+    Integer radius;
 }
