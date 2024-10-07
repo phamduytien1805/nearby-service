@@ -13,6 +13,7 @@ import org.mapstruct.factory.Mappers;
 public interface UserLocationDTOMapper extends RestConverter<UserLocationDTO, UserLocation> {
     UserLocationDTOMapper BUILDER = Mappers.getMapper(UserLocationDTOMapper.class);
 
-    UserLocationDTO mapToDTO(UserLocation form);
+    @Override
+    UserLocationDTO mapToRest(UserLocation form);
 
 }

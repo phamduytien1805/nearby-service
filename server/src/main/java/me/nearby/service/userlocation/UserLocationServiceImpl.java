@@ -38,12 +38,12 @@ public class UserLocationServiceImpl implements UserLocationService {
     public List<UserLocationDTO> findNearbyUsers(NearbyQuery nearbyQuery) {
         RadiusConfig radiusConfig = RadiusConfig.findByValue(nearbyQuery.getRadius());
         List<Long> coveringCellIds = userLocationUseCase.getPossibleCellIdsNearbyLocation(nearbyQuery.getLatitude(),nearbyQuery.getLongitude() ,radiusConfig);
-        return userLocationGateway.findByS2CellIdIn(coveringCellIds).stream().map(userLocationDTOMapper::mapToDTO).collect(Collectors.toList());
+        return userLocationGateway.findByS2CellIdIn(coveringCellIds).stream().map(userLocationDTOMapper::mapToRest).collect(Collectors.toList());
     }
 
     @Override
     public UserLocationDTO saveUserLocation(UUID userId, UserLocationForm userLocationForm) {
-        UserLocation userLocation = userLocationGateway.save(userLocationFormMapper.mapToDomain(userId,userLocationForm.getRadius(), userLocationForm));
-        return userLocationDTOMapper.mapToDTO(userLocation);
+        UserLocation userLocation = userLocationGateway.save(userLocationFormMapper.mapToDomain(userLocationForm, userId,userLocationForm.getRadius()));
+        return userLocationDTOMapper.mapToRest(userLocation);
     }
 }

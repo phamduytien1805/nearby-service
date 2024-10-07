@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-06T13:21:28+0700",
+    date = "2024-10-07T23:01:35+0700",
     comments = "version: 1.6.0, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 @Component
 public class UserLocationDTOMapperImpl implements UserLocationDTOMapper {
 
     @Override
-    public UserLocationDTO mapToDTO(UserLocation form) {
+    public UserLocationDTO mapToRest(UserLocation form) {
         if ( form == null ) {
             return null;
         }

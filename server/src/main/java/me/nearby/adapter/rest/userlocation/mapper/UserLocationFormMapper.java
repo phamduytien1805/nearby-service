@@ -14,7 +14,9 @@ public interface UserLocationFormMapper {
     UserLocationFormMapper BUILDER = Mappers.getMapper(UserLocationFormMapper.class);
 
     // Map fields from UserLocationForm to UserLocation
-    UserLocation mapToDomain(@Context UUID userId,@Context Integer radius, UserLocationForm form);
+    @Mapping(target = "latitude", source = "latitude")
+    @Mapping(target = "longitude", source = "longitude")
+    UserLocation mapToDomain(UserLocationForm form, @Context UUID userId,@Context Integer radius);
 
     @AfterMapping
     default void setUserId(@MappingTarget UserLocation userLocation, @Context UUID userId) {
