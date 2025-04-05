@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface UserLocationGateway extends RepositoryGateway<UserLocation, String> {
     List<UserLocation> findByS2CellIdIn(Collection<Long> s2CellIds);
+    List<UserLocation> findByS2CellIdRange(List<Long[]> coveringRanges);
 }

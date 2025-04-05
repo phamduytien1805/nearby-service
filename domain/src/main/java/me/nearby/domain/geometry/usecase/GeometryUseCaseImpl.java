@@ -10,13 +10,9 @@ import java.util.stream.Collectors;
 @Component
 @AllArgsConstructor
 public class GeometryUseCaseImpl{
-    public static double getRadiusMeters() {
-        return 6371010.0;
-    }
-
     /** Returns the Earth's mean radius as above, but in kilometers. */
     public static double getRadiusKm() {
-        return 0.001 * getRadiusMeters();
+        return 6371.01;
     }
 
     /** Converts the given kilometers to radians. */
@@ -24,32 +20,29 @@ public class GeometryUseCaseImpl{
         return km / getRadiusKm();
     }
 
-    public static List<Long> findAllCoveringCellIds(double latitude, double longitude, RadiusConfig radiusConfig) {
+    public static List<Long[]> findAllCoveringCellIds(double latitude, double longitude, RadiusConfig radiusConfig) {
         // Step 1: Convert latitude/longitude to S2LatLng and then to S2Point
         S2LatLng latLng = S2LatLng.fromDegrees(latitude, longitude);
-        S2Point point = latLng.toPoint();  // Convert to an S2Point (3D representation on a sphere)
+        double angleRad = kmToRadians(radiusConfig.getValue());
 
         // Step 2: Create an S2Cap to represent the circular region with the given radius
-        S2Cap cap = S2Cap.fromAxisAngle(point, S1Angle.radians(kmToRadians(radiusConfig.getValue())));  // Create the S2Cap using the angle
+        S2Cap cap = S2Cap.fromAxisAngle(latLng.toPoint(), S1Angle.radians(angleRad));// Create the S2Cap using the angle
 
         // Step 3: Define how the region should be covered (by cells)
-        S2RegionCoverer.Builder covererBuilder = S2RegionCoverer.builder();
+        S2RegionCoverer coverer = S2RegionCoverer.builder().setMinLevel(radiusConfig.getMaxLevel()).setMaxLevel(radiusConfig.getMaxLevel()).setMaxCells(radiusConfig.getMaxCell()).build();
 
-        covererBuilder.setMinLevel(radiusConfig.getMinLevel());
-        covererBuilder.setMaxLevel(radiusConfig.getMaxLevel());
-
-        // Step 4: Create the covering from the spherical cap
-        S2RegionCoverer coverer = covererBuilder.build();
-
-        // Step 5: Get the list of S2 cell IDs (unique identifiers for the covering cells)
-        return coverer.getCovering(cap).cellIds().stream()
-                .map(S2CellId::id)  // Convert the S2 cells to their ID representation
-                .collect(Collectors.toList());
+        List<Long[]> ranges = new ArrayList<>();
+        for (S2CellId cellId : coverer.getCovering(cap)) {
+            long rangeMin = cellId.rangeMin().id();
+            long rangeMax = cellId.rangeMax().id();
+            ranges.add(new Long[]{rangeMin, rangeMax});
+        }
+        return ranges;
     }
 
-    public static Long getCellId(double latitude, double longitude, RadiusConfig radiusConfig) {
+    public static Long getCellId(double latitude, double longitude) {
         S2LatLng latLng = S2LatLng.fromDegrees(latitude, longitude);
-        S2CellId cellId = S2CellId.fromLatLng(latLng).parent(radiusConfig.getMinLevel());
+        S2CellId cellId = S2CellId.fromLatLng(latLng).parent(RadiusConfig.levelToSave());
         return cellId.id();
     }
 }

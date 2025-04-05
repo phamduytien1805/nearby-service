@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value = {"/api/user-location"})
+@RequestMapping(value = {"/user-location"})
 @AllArgsConstructor
 public class UserLocationController {
     private final UserLocationService userLocationService;
@@ -28,10 +28,10 @@ public class UserLocationController {
         return ResponseEntity.ok(userLocationList);
     }
 
-    @PostMapping
+    @PostMapping(value = "/save")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<UserLocationDTO> saveUserLocation(@RequestBody UserLocationForm userLocationForm) {
-        UserLocationDTO userLocation = userLocationService.saveUserLocation(UUID.fromString("c61e1ae8-7516-11ef-9986-de5277a6cb0b"), userLocationForm);
-        return ResponseEntity.ok(userLocation);
+        UserLocationDTO userLocationDTO = userLocationService.saveUserLocation(UUID.randomUUID(), userLocationForm);
+        return ResponseEntity.ok(userLocationDTO);
     }
 }

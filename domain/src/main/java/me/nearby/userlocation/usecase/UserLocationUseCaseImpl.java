@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserLocationUseCaseImpl implements UserLocationUseCase {
     @Override
-    public List<Long> getPossibleCellIdsNearbyLocation(Double latitude, Double longitude, RadiusConfig radiusConfig) {
+    public List<Long[]> getPossibleCellIdsNearbyLocation(Double latitude, Double longitude, RadiusConfig radiusConfig) {
         return GeometryUseCaseImpl.findAllCoveringCellIds(latitude, longitude, radiusConfig);
     }
 }

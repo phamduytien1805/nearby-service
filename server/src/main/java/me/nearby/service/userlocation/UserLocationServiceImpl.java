@@ -2,7 +2,6 @@ package me.nearby.service.userlocation;
 
 import jakarta.annotation.Resource;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import me.nearby.adapter.datastorage.userlocation.UserLocationGateway;
 import me.nearby.adapter.rest.userlocation.dto.NearbyQuery;
 import me.nearby.adapter.rest.userlocation.dto.UserLocationDTO;
@@ -37,13 +36,13 @@ public class UserLocationServiceImpl implements UserLocationService {
     @Override
     public List<UserLocationDTO> findNearbyUsers(NearbyQuery nearbyQuery) {
         RadiusConfig radiusConfig = RadiusConfig.findByValue(nearbyQuery.getRadius());
-        List<Long> coveringCellIds = userLocationUseCase.getPossibleCellIdsNearbyLocation(nearbyQuery.getLatitude(),nearbyQuery.getLongitude() ,radiusConfig);
-        return userLocationGateway.findByS2CellIdIn(coveringCellIds).stream().map(userLocationDTOMapper::mapToRest).collect(Collectors.toList());
+        List<Long[]> coveringCellIdsRange = userLocationUseCase.getPossibleCellIdsNearbyLocation(nearbyQuery.getLatitude(),nearbyQuery.getLongitude() ,radiusConfig);
+        return userLocationGateway.findByS2CellIdRange(coveringCellIdsRange).stream().map(userLocationDTOMapper::mapToRest).collect(Collectors.toList());
     }
 
     @Override
     public UserLocationDTO saveUserLocation(UUID userId, UserLocationForm userLocationForm) {
-        UserLocation userLocation = userLocationGateway.save(userLocationFormMapper.mapToDomain(userLocationForm, userId,userLocationForm.getRadius()));
+        UserLocation userLocation = userLocationGateway.save(userLocationFormMapper.mapToDomain(userLocationForm, userId));
         return userLocationDTOMapper.mapToRest(userLocation);
     }
 }

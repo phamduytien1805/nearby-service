@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-07T22:59:02+0700",
+    date = "2025-04-05T23:56:18+0700",
     comments = "version: 1.6.0, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 @Component
 public class UserLocationFormMapperImpl implements UserLocationFormMapper {
 
     @Override
-    public UserLocation mapToDomain(UserLocationForm form, UUID userId, Integer radius) {
+    public UserLocation mapToDomain(UserLocationForm form, UUID userId) {
         if ( form == null ) {
             return null;
         }
@@ -26,7 +26,7 @@ public class UserLocationFormMapperImpl implements UserLocationFormMapper {
         userLocation.setLongitude( form.getLongitude() );
 
         setUserId( userLocation, userId );
-        setS2CellId( userLocation, radius );
+        setS2CellId( userLocation );
 
         return userLocation;
     }

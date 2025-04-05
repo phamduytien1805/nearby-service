@@ -16,7 +16,7 @@ public interface UserLocationFormMapper {
     // Map fields from UserLocationForm to UserLocation
     @Mapping(target = "latitude", source = "latitude")
     @Mapping(target = "longitude", source = "longitude")
-    UserLocation mapToDomain(UserLocationForm form, @Context UUID userId,@Context Integer radius);
+    UserLocation mapToDomain(UserLocationForm form, @Context UUID userId);
 
     @AfterMapping
     default void setUserId(@MappingTarget UserLocation userLocation, @Context UUID userId) {
@@ -24,7 +24,7 @@ public interface UserLocationFormMapper {
     }
 
     @AfterMapping
-    default void setS2CellId(@MappingTarget UserLocation userLocation, @Context Integer radius) {
-        userLocation.setS2CellId(GeometryUseCaseImpl.getCellId(userLocation.getLatitude(), userLocation.getLongitude(), RadiusConfig.findByValue(radius)));
+    default void setS2CellId(@MappingTarget UserLocation userLocation) {
+        userLocation.setS2CellId(GeometryUseCaseImpl.getCellId(userLocation.getLatitude(), userLocation.getLongitude()));
     }
 }
